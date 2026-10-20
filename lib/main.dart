@@ -8,12 +8,10 @@ import 'screens/courses_page.dart';
 import 'screens/favorites_page.dart';
 import 'screens/home_page.dart';
 import 'screens/profile_page.dart';
-import 'widgets/status_style.dart';
 
 void main() {
-  // KITA PAKAI API DUMMY DULU BIAR BISA JALAN TANPA SUPABASE
-  const String apiUrl = 'https://my-json-server.typicode.com/typicode/demo';
-  final dataSource = CourseApiService(apiUrl); 
+  // Kita masukkan service dummy (tidak akan dipakai karena Provider ambil dari lokal)
+  final dataSource = CourseApiService('https://dummy.com'); 
 
   runApp(
     ChangeNotifierProvider(
@@ -23,7 +21,6 @@ void main() {
   );
 }
 
-// ... (Biarkan class MyApp dan MainShell di bawahnya SAMA PERSIS seperti sebelumnya) ...
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override

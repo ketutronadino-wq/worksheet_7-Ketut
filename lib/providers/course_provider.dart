@@ -32,12 +32,13 @@ class CourseProvider extends ChangeNotifier {
   Future<void> loadAll() async {
     _isLoading = true; _error = null; notifyListeners();
     try {
-      // Ambil data student dari JSON lokal (Pertemuan 6)
+      // 1. Ambil data student & course dari file JSON lokal
       final str = await rootBundle.loadString('assets/data/student_data.json');
-      _student = (jsonDecode(str) as Map<String, dynamic>)['student'];
+      final data = jsonDecode(str) as Map<String, dynamic>;
       
-      // Ambil data courses dari Backend (Pertemuan 7)
-      _courses = await repository.getCourses();
+      _student = data['student'];
+      _courses = (data['courses'] as List).map((e) => Course.fromJson(e)).toList();
+      
     } catch (e) {
       _error = e.toString();
     } finally {
@@ -45,24 +46,30 @@ class CourseProvider extends ChangeNotifier {
     }
   }
 
+  // --- FUNGSI CRUD (Sementara simpan di memori lokal) ---
   Future<bool> createCourse(Course c) async {
     _isSaving = true; notifyListeners();
-    try { await repository.createCourse(c); await loadAll(); return true; }
-    catch (e) { _error = e.toString(); return false; }
-    finally { _isSaving = false; notifyListeners(); }
+    await Future.delayed(const Duration(milliseconds: 500)); // Simulasi loading
+    _courses.add(c);
+    _isSaving = false; notifyListeners();
+    return true;
   }
 
   Future<bool> updateCourse(int id, Course c) async {
     _isSaving = true; notifyListeners();
-    try { await repository.updateCourse(id, c); await loadAll(); return true; }
-    catch (e) { _error = e.toString(); return false; }
-    finally { _isSaving = false; notifyListeners(); }
+    await Future.delayed(const Duration(milliseconds: 500));
+    final index = _courses.indexWhere((element) => element.code == c.code);
+    if (index != -1) _courses[index] = c;
+    _isSaving = false; notifyListeners();
+    return true;
   }
 
   Future<bool> deleteCourse(int id, String code) async {
     _isSaving = true; notifyListeners();
-    try { await repository.deleteCourse(id); _favorites.remove(code); await loadAll(); return true; }
-    catch (e) { _error = e.toString(); return false; }
-    finally { _isSaving = false; notifyListeners(); }
+    await Future.delayed(const Duration(milliseconds: 500));
+    _courses.removeWhere((element) => element.code == code);
+    _favorites.remove(code);
+    _isSaving = false; notifyListeners();
+    return true;
   }
 }
