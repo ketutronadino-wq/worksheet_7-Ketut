@@ -1,0 +1,53 @@
+{
+  "student": {
+    "nim": "2415051108",
+    "name": "Ketut Rona Dino",
+    "skills": [
+      "Flutter",
+      "Dart",
+      "Git",
+      "GitHub",
+      "JSON",
+      "Responsive UI",
+      "Navigation",
+      "Form Validation"
+    ]
+  },
+  "courses": [
+    {
+      "code": "MOB01",
+      "title": "Git & GitHub",
+      "credits": 2,
+      "status": "done",
+      "description": "Mempelajari version control dasar menggunakan Git dan GitHub untuk kolaborasi proyek."
+    },
+    {
+      "code": "MOB02",
+      "title": "Dart Fundamentals",
+      "credits": 2,
+      "status": "done",
+      "description": "Memahami dasar bahasa pemrograman Dart, OOP, collection, dan null safety."
+    },
+    {
+      "code": "MOB03",
+      "title": "Flutter UI Fundamentals",
+      "credits": 3,
+      "status": "active",
+      "description": "Membangun antarmuka Flutter dari widget dasar, layout Row/Column, hingga data JSON statik."
+    },
+    {
+      "code": "MOB04",
+      "title": "Responsive Layout",
+      "credits": 2,
+      "status": "planned",
+      "description": "Penerapan MediaQuery, LayoutBuilder, dan breakpoint untuk berbagai ukuran layar."
+    },
+    {
+      "code": "MOB05",
+      "title": "Navigation & Interaction",
+      "credits": 3,
+      "status": "planned",
+      "description": "Pengelolaan navigasi multi-screen, pengiriman data, serta interaksi pengguna dan form."
+    }
+  ]
+}
