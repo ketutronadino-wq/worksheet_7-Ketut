@@ -1,26 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'providers/course_provider.dart';
 import 'repositories/course_repository.dart';
-import 'services/course_supabase_service.dart'; 
+import 'services/course_api_service.dart'; 
 import 'screens/courses_page.dart';
 import 'screens/favorites_page.dart';
 import 'screens/home_page.dart';
 import 'screens/profile_page.dart';
+import 'widgets/status_style.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  
-  // ISI BAGIAN INI DENGAN DATA DARI SUPABASE ANDA
-  await Supabase.initialize(
-    url: 'URL_SUPABASE_ANDA',
-    anonKey: 'ANON_KEY_SUPABASE_ANDA',
-  );
-
-  // GANTI KE CourseApiService('https://my-json-server.typicode.com/typicode/demo') JIKA INGIN PAKAI REST API
-  final dataSource = CourseSupabaseService(); 
+void main() {
+  // KITA PAKAI API DUMMY DULU BIAR BISA JALAN TANPA SUPABASE
+  const String apiUrl = 'https://my-json-server.typicode.com/typicode/demo';
+  final dataSource = CourseApiService(apiUrl); 
 
   runApp(
     ChangeNotifierProvider(
@@ -30,9 +23,9 @@ Future<void> main() async {
   );
 }
 
+// ... (Biarkan class MyApp dan MainShell di bawahnya SAMA PERSIS seperti sebelumnya) ...
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
