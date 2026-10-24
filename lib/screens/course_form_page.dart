@@ -52,7 +52,7 @@ class _CourseFormPageState extends State<CourseFormPage> {
             TextFormField(controller: _titleCtrl, decoration: const InputDecoration(labelText: 'Judul'), validator: (v) => v!.isEmpty ? 'Wajib' : null),
             TextFormField(controller: _creditsCtrl, decoration: const InputDecoration(labelText: 'SKS'), keyboardType: TextInputType.number, validator: (v) => int.tryParse(v ?? '') == null ? 'Harus angka' : null),
             DropdownButtonFormField<String>(
-              value: _status, decoration: const InputDecoration(labelText: 'Status'),
+  initialValue: _status, decoration: const InputDecoration(labelText: 'Status'),
               items: ['planned', 'active', 'done'].map((s) => DropdownMenuItem(value: s, child: Text(s))).toList(),
               onChanged: (val) => setState(() => _status = val!),
             ),

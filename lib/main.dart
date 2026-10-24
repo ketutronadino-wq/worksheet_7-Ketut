@@ -10,8 +10,9 @@ import 'screens/home_page.dart';
 import 'screens/profile_page.dart';
 
 void main() {
-  // Kita masukkan service dummy (tidak akan dipakai karena Provider ambil dari lokal)
-  final dataSource = CourseApiService('https://dummy.com'); 
+  // INI ENDPOINT DARI DOSEN
+  const String apiUrl = 'https://course-api-pearl.vercel.app'; 
+  final dataSource = CourseApiService(apiUrl); 
 
   runApp(
     ChangeNotifierProvider(
